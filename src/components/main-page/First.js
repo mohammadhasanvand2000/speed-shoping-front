@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { baseUrl } from '../../axiosConfig';
+import { Helmet } from 'react-helmet';
 
 import '../../bace-style/css/bootstrap.css'
 import CarouselSlider from './CarouselSlider';
@@ -54,6 +55,9 @@ const First = () => {
   
     return (
       <main className="body">
+        <Helmet>
+        <title> فروشگاه دوچرخه اسپید </title>
+      </Helmet>
       <div style={{ maxHeight: '90%', maxWidth: "98%" }} className="container">
         <header className="header--style-1">
         <div className="navbar-container">
