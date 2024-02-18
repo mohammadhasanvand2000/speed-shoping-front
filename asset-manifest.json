@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/speed-shoping-front/static/css/main.63001f5e.css",
+    "main.css": "/speed-shoping-front/static/css/main.ca4710bd.css",
     "main.js": "/speed-shoping-front/static/js/main.e963f35e.js",
     "static/media/backs.jpg": "/speed-shoping-front/static/media/backs.e2ed13b5986a087e83a7.jpg",
     "static/media/img2.jpg": "/speed-shoping-front/static/media/img2.fcd7a280ad1e73268b58.jpg",
@@ -16,11 +16,11 @@
     "static/media/slick.ttf": "/speed-shoping-front/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/speed-shoping-front/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/speed-shoping-front/index.html",
-    "main.63001f5e.css.map": "/speed-shoping-front/static/css/main.63001f5e.css.map",
+    "main.ca4710bd.css.map": "/speed-shoping-front/static/css/main.ca4710bd.css.map",
     "main.e963f35e.js.map": "/speed-shoping-front/static/js/main.e963f35e.js.map"
   },
   "entrypoints": [
-    "static/css/main.63001f5e.css",
+    "static/css/main.ca4710bd.css",
     "static/js/main.e963f35e.js"
   ]
 }
