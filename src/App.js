@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import { AuthProvider ,getAuthToken} from './components/auth/AuthContext';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -23,7 +23,8 @@ class App extends React.Component {
     return (
       <React.StrictMode>
         <AuthProvider>
-          <Routes>
+        
+          <Routes >
           <Route path="/about" element={<AboutSection />} />
           <Route path="/form/:cartId" element={<BuyForm />} />
           <Route path="/test" element={<TestComponent />} />
@@ -38,6 +39,7 @@ class App extends React.Component {
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
           </Routes>
+         
         </AuthProvider>
       </React.StrictMode>
     );
