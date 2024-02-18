@@ -8,8 +8,16 @@ import Slider from 'react-slick';
 import Gallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import numeral from 'numeral';
+import { FaMinus, FaPlus } from 'react-icons/fa';
+import { useAuth } from '../auth/AuthContext';
+import SuccessModal from './SuccessModal';
+import { BsFileText, BsBox,BsBicycle, BsCardTravel, BsCart, BsHouseDoor  } from 'react-icons/bs';
+import { Modal, Button } from 'react-bootstrap';
+import CurrentPathIndicator from './CurrentPathIndicator'
+import { baseUrl } from '../../axiosConfig';
 
-import { useAuth  } from '../auth/AuthContext';
+
+
 const Detail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -20,22 +28,61 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
   const [zoomImage, setZoomImage] = useState('');
   const [galleryImages, setGalleryImages] = useState([]);
-  
-  
-  
-  const { token } = useAuth();
-console.log('Token:', token);
+  const [quantity, setQuantity] = useState(1);
+  const [count, setCount] = useState(1);
+  const { getAuthToken } = useAuth();
+  const [selectedColor, setSelectedColor] = useState(null); // وضعیت جدید برای رنگ انتخاب‌شده
+  const [cartMessage, setCartMessage] = useState('');
+  const [formData, setFormData] = useState({
+    quantity: 1,
+    color: null,
+  });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+ 
+  const [showCartButton, setShowCartButton] = useState(false);
 
+  const [authToken, setAuthToken] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
+  
+  
+  useEffect(() => {
+    // در اینجا عملیات دریافت توکن و تنظیم مقدار آن صورت می‌گیرد
+    const fetchAuthToken = async () => {
+      const token = await getAuthToken();
+      setAuthToken(token);
+    };
+
+    fetchAuthToken();
+  }, []); 
+
+  const handleCartClick = () => {
+    if (!authToken) {
+      setShowModal(true);
+    } else {
+      // Redirect to cart page
+      
+      handleAddToCart();
+     
+    }
+  };
+  
+
+  const handleClose = () => setShowModal(false);
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        const authToken = await getAuthToken();
+        console.log(' توی جزیات توکن:', authToken);
         if (!id) {
           console.error('Invalid product ID');
           return;
         }
 
-        const response = await axios.get(`http://127.0.0.1:8000/pro/detail/${id}/`);
+        const response = await axios.get(`${baseUrl}/pro/detail/${id}/`);
         console.log('Received data:', response.data);
         setZoomImage(response.data.product.image);
         setLoading(false);
@@ -44,6 +91,7 @@ console.log('Token:', token);
         setProductImages(response.data.product_image);
         setProductColors(response.data.product_color);
         setClientComment(response.data.client_comment);
+
 
         setLoading(false);
       } catch (error) {
@@ -60,6 +108,75 @@ console.log('Token:', token);
 
     fetchProduct();
   }, [id]);
+  const handleColorSelection = (color) => {
+    setSelectedColor(color);
+    setFormData((prevData) => ({
+      ...prevData,
+      color: color,
+    }));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      if (!formData.color || formData.quantity <= 0) {
+        return;
+      }
+
+      const authToken = await getAuthToken();
+      const url = `${baseUrl}/pro/add-to-cart/${id}/`;
+
+      const data = {
+        product: product.id,
+        quantity: formData.quantity,
+        color: formData.color,
+      };
+
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+      };
+      
+
+      const response = await axios.post(url, data, { headers });
+
+      setCartMessage('محصول با موفقیت به سبد خرید افزوده شد');
+      setShowSuccessModal(true);
+      setShowCartButton(true);
+
+    } catch (error) {
+      setShowCartButton(true);
+      handleCartClick();
+      console.error('خطا در افزودن به سبد خرید:', error);
+      setCartMessage('مشکلی در افزودن به سبد خرید پیش آمده است');
+    }
+  };
+  const closeModal = () => {
+    setShowSuccessModal(false);
+    setSuccessMessage('');
+  };
+  
+  
+  const handleDecrement = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    quantity: Math.max(1, prevData.quantity - 1),
+  }));
+};
+
+const handleIncrement = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    quantity: prevData.quantity + 1,
+  }));
+};
 
   const thumbnailSettings = {
     dots: false,
@@ -71,25 +188,23 @@ console.log('Token:', token);
 
   const zoomProps = {
     width: 500,
-    zoomWidth: 900, // تغییر ممکن است این مقدار برای شما متفاوت باشد
-    scale: 0.3
+    zoomWidth: 900,
+    scale: 0.3,
   };
-  
 
-
-  
   const handleThumbnailClick = (image) => {
     setZoomImage(image.image);
   };
 
-  const baseUrl = 'http://127.0.0.1:8000';
+
   
 
   return (
-    <div dir='rtl' className="u-s-p-y-60">
+    <div dir='rtl' className="section-cart u-s-p-y-60">
       <div className='container'>
         <div className="u-s-p-b-60">
           <div className="section__intro u-s-m-b-16">
+          <div dir='rtl'  style={{marginRight:'60px'}}><CurrentPathIndicator /></div>
             <div className="container">
               <div className="row">
                 <div className="col-lg-12">
@@ -103,6 +218,10 @@ console.log('Token:', token);
               </div>
             </div>
           </div>
+        {/* در جای مناسب در کد */}
+        {showSuccessModal && (
+  <SuccessModal onClose={closeModal} message={successMessage} />
+)}
 
           <div className="section__intro u-s-p-t-90">
         <div className="row" style={{ display: 'flex', flexDirection: 'row-reverse' }}>
@@ -164,8 +283,9 @@ console.log('Token:', token);
         type="radio"
         id={`color-${color.id}`}
         name="productColor"
-        value={color.color}
+        value={formData.color}
         style={{ display: 'none' }}
+        onChange={() => handleColorSelection(color.color)}
       />
       <label htmlFor={`color-${color.id}`} style={{ backgroundColor: color.color }}>
         
@@ -180,7 +300,7 @@ console.log('Token:', token);
                   <div className="u-s-m-b-15">
                     <div className="pd-detail__inline">
                       <span className="pd-detail__click-wrap"><i className="far fa-heart u-s-m-r-6" />
-                        <a style={{ color: "#42c3ff" }} href="signin.html">افزودن به لیست علاقه مندی ها </a>
+                        
                         <span className="pd-detail__click-count">(#####)</span></span></div>
                   </div>
                   <div className="u-s-m-b-15">
@@ -203,13 +323,54 @@ console.log('Token:', token);
                         <a className="s-gplus--color-hover" href="#"><i className="fab fa-google-plus-g" /></a></li>
                     </ul>
                   </div>
-                  <div className="u-s-m-b-15">
-                    <form className="pd-detail__form">
-                      <div className="pd-detail-inline-2">
-                        <div className="u-s-m-b-15">
-                          <button style={{ color: "#fdfcfc" }} className="btn btn--e-brand-b-2" type="submit">خرید</button></div>
-                      </div>
-                    </form>
+
+             
+          </div> <div  style={{  marginRight:"50px"}} className="u-s-m-b-15">
+        <label style={{ color: "#fdfcfc", marginBottom: '10px' }}>تعداد:</label>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div className="input-counter">
+            <span className="input-counter__minus" onClick={handleDecrement}>
+              <FaMinus />
+            </span>
+            <input
+              className="input-counter__text input-counter--text-primary-style"
+              type="text"
+             
+              value={formData.quantity}
+              readOnly
+            />
+            <span className="input-counter__plus" onClick={handleIncrement}>
+              <FaPlus />
+            </span>
+          </div>
+        </div>
+      </div>
+          <br/>
+          {/* ... کدهای دیگر */}
+          <div className="u-s-m-b-15">
+                    <div className="u-s-m-b-15">
+      <form className="pd-detail__form">
+        
+          
+            <button style={{ color: "#fdfcfc" , marginRight:"50px"}} className="btn btn--e-brand-b-2"  onClick={() => {
+    
+    handleAddToCart();
+    
+  }} type="button">خرید</button><br/>
+            {showCartButton && (<a href="/cart" >
+  <button style={{backgroundColor:'#28a745',marginTop:'20px',borderColor:'#28a745', marginRight:"30px", color: "#fdfcfc", marginRight:"50px" }} className="btn btn--e-brand-b-2 " >
+    <a href="/cart" ><h4><BsCart /></h4>
+     سبد
+     </a>
+  </button></a>
+)}
+        
+      </form>
+      
+
+
+    </div>
+                  
                   </div>
                 </div>
                 {/*====== End - Product Right Side Details ======*/}
@@ -327,8 +488,21 @@ console.log('Token:', token);
                 </div>
               </div>
             </div>
-            </div></div></div>
-            </div>
+            </div></div> <Modal  show={showModal} onHide={handleClose}>
+        <Modal.Header   dir='rtl' >
+          <Modal.Title ><h1 style={{ fontSize: '2rem', color: '#f80606',textAlign:'center' }}>خطا!</h1></Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{textAlign:'center'}}>شما باید وارد شوید تا بتوانید  خرید کنید </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            بستن
+          </Button>
+          <Button variant="primary" href="/login">
+            ورود
+          </Button>
+        </Modal.Footer>
+      </Modal></div>
+          
             
   );
 };

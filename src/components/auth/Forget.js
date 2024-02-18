@@ -4,6 +4,8 @@ import '../../bace-style/css/bootstrap.css'
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import CurrentPathIndicator from '../main-page/CurrentPathIndicator'
+import { baseUrl } from '../../axiosConfig';
 
 class Forget extends Component {
   constructor(props) {
@@ -43,7 +45,7 @@ class Forget extends Component {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/auth/request-reset-email', {
+        const response = await axios.post(`${baseUrl}/auth/request-reset-email`, {
           email: this.state.email,
           
         }, {
@@ -52,7 +54,7 @@ class Forget extends Component {
 
         console.log('ورود موفق:', response.data.message);
         
-
+        this.setState({ showModal: true });
       } catch (error) {
         this.setState({ errorMessage: error.response.data.error, showModal: true });
 
@@ -77,6 +79,8 @@ class Forget extends Component {
     return (
       <div className="my-component">
         <main>
+        <div dir='rtl'  style={{marginRight:'60px',color:'#000000'}}><h3 style={{marginRight:'60px',color:'#000000'}}><CurrentPathIndicator /></h3> </div>
+
           <div className="container">
             <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
               <div className="container">
@@ -141,12 +145,12 @@ class Forget extends Component {
         <Modal  className="card-body" show={this.state.showModal} onHide={this.handleClose}>
           <Modal.Header style={{ backgroundColor: '#febf03' }} closeButton>
           <Modal.Body style={{ display: 'flex', justifyContent: 'center' }}>
-            <h1 style={{ fontSize: '2rem', color: '#f80606' }}>خطا!</h1>
+            <h1 style={{ fontSize: '2rem', color: '#f80606' }}>ارسال ایمیل</h1>
           </Modal.Body>
 
 
           </Modal.Header >
-          <Modal.Body className="text-center" style={{ backgroundColor: '#04cbee' }}>{"ایمیل یا شماره  موبایل تکراری است یا این که کاربر دیگری با این مشخصات وجود دارد ."}</Modal.Body>
+          <Modal.Body className="text-center" style={{ backgroundColor: '#04cbee' }}>{"ایمیل با موفقیت ارسال شد ، لطفا ایمیل خود را چک کنید ."}</Modal.Body>
           <Modal.Footer  style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#febf03' }}>
               <Button style={{ backgroundColor: '#0a58ca' }} variant="secondary" onClick={this.handleClose}>
                 متوجه شدم 

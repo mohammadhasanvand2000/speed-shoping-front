@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Detail from './Detail';
+
 import numeral from 'numeral';
 import { FaEye, FaShoppingCart, FaHeart, FaEnvelope } from 'react-icons/fa';
+import { useAuth } from '../auth/AuthContext';
+import axios from 'axios';
+import CurrentPathIndicator from './CurrentPathIndicator'
+
+import { Detail, handleAddToCart } from './Detail';
+import { baseUrl } from '../../axiosConfig';
+
+
 
 const Product = () => {
   const [groupingList, setGroupingList] = useState([]);
@@ -10,10 +18,14 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const [visibleProducts, setVisibleProducts] = useState(8); // تعداد اولیه محصولات قابل مشاهده
   const [loadMoreCount, setLoadMoreCount] = useState(4); // تعداد محصولاتی که هر بار بارگذاری بیشتر می‌شوند
+  const { getAuthToken } = useAuth();
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+  const [showAddToCartModal, setShowAddToCartModal] = useState(false);
+  const { handleAddToCart } = require('./Detail'); // نیازی به اعلان "Detail" نیست
 
   useEffect(() => {
     // اجرای درخواست هنگام رندر اولیه
-    fetch('http://127.0.0.1:8000/pro/grouping/')
+    fetch(`${baseUrl}/pro/grouping/`)
       .then(response => response.json())
       .then(data => {
         setGroupingList(data);
@@ -28,8 +40,9 @@ const Product = () => {
   useEffect(() => {
     // این قسمت را باید با درخواست به API شما جایگزین کنید
     const url = selectedGroup
-      ? `http://127.0.0.1:8000/pro/products/?category=${selectedGroup}`
-      : 'http://127.0.0.1:8000/pro/products/';
+  ? `${baseUrl}/pro/products/?category=${selectedGroup}`
+  : `${baseUrl}/pro/products/`;
+
 
     setLoading(true); // قبل از ارسال درخواست مجدداً وضعیت Loading را به true تغییر می‌دهیم.
 
@@ -46,7 +59,8 @@ const Product = () => {
         setLoading(false); // اگر خطا رخ داد، نیز وضعیت Loading را به پایان می‌بریم.
       });
   }, [selectedGroup]);
-
+ 
+ 
   const handleGroupChange = (group) => {
     setSelectedGroup(group);
   };
@@ -58,6 +72,7 @@ const Product = () => {
   return (
     <div className="u-s-p-y-60">
       <div className="u-s-p-b-60">
+      
         <div className="section__intro u-s-m-b-16">
           <div className="container">
             <div className="row">
@@ -111,20 +126,12 @@ const Product = () => {
                               <div className="product-o__action-wrap">
                                 <ul className="product-o__action-list">
                                   <li>
-                                    <a href={`Detail/${product.id}`} data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="جزییات">
+                                    <a target="blank"  href={`Detail/${product.id}`} data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="جزییات">
                                     <FaEye />
                                     </a>
                                   </li>
-                                  <li>
-                                    <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="افزودن به سبد">
-                                    <FaShoppingCart style={{ color: 'white' }}/>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="/register" data-tooltip="tooltip" data-placement="top" title="افزودن به علاقه مندی ها ">
-                                    <FaHeart />
-                                    </a>
-                                  </li>
+                                  
+                                 
                                 </ul>
                               </div>
                             </div>
@@ -160,6 +167,26 @@ const Product = () => {
                   <button className="btn btn--e-brand" type="button" onClick={handleLoadMore}>
                     ادامه محصولات
                   </button>
+                  {showAddToCartModal && (
+      <div className="modal fade" id="add-to-cart" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">محصول به سبد خرید اضافه شد</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => setShowAddToCartModal(false)}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              {/* متن یا اطلاعات مورد نظر شما */}
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => setShowAddToCartModal(false)}>بستن</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
                 </div>
               </div>
             </div>
@@ -167,6 +194,7 @@ const Product = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

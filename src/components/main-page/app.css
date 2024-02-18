@@ -33,6 +33,18 @@
     font-size: 20px; /* یک مقدار ثابت برای عرض‌های بزرگتر از 768px */
   }
 }
+/* در فایل CSS خود */
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #28a745; /* رنگ سبز موفقیت بر اساس Bootstrap */
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
 
 /* تنظیمات اصلی برای custom-navbar */
 .custom-navbar {
@@ -869,10 +881,10 @@ body {
 .btn--e-secondary {
   color: #ffffff;
   border: 1px solid transparent;
-  background-color: #333333;
+  background-color: #ff4500;
   transition: background-color .5s ease-in; }
   .btn--e-secondary:hover {
-    background-color: #303030; }
+    background-color:#ff4500; }
 
 .btn--e-white-brand {
   border: 1px solid transparent;
@@ -3024,78 +3036,132 @@ input::-ms-clear {
 /*--------------------------------------------------------------
 11.0 Cart-Wishlist-Pages
 --------------------------------------------------------------*/
-.table-responsive {
-  overflow-x: auto; }
+/* General styles */
+.section__intro {
+  padding: 60px 0;
+}
+
+.section__heading {
+  color: #c70039;
+}
+
+.section__content {
+  margin-bottom: 60px;
+}
+
+.container {
+  max-width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .table-p {
   width: 100%;
   border: 1px solid #eee;
-  border-collapse: collapse; }
-  .table-p tr {
-    position: relative;
-    border-top: 1px solid #eee; }
+  border-collapse: collapse;
+}
+
+.table-p tr {
+  position: relative;
+  border-top: 1px solid #eee;
+}
+
+.table-p td {
+  padding: 20px;
+}
+
+.table-p__box {
+  display: flex;
+  align-items: center;
+}
+
+.table-p__img-wrap {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  margin-right: 15px;
+}
+
+.table-p__img-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.table-p__info {
+  flex-grow: 1;
+}
+
+.table-p__name > a,
+.table-p__category > a {
+  display: inline-block;
+  color: #fffafa;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.5s;
+}
+
+.table-p__name > a:hover,
+.table-p__category > a:hover {
+  color: #ffff00;
+}
+
+.table-p__variant-list > li > span {
+  color: #a0a0a0;
+  font-size: 12px;
+}
+
+.table-p__price {
+  text-align: center;
+  display: block;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.table-p__input-counter-wrap {
+  text-align: center;
+}
+
+.table-p__del-wrap {
+  text-align: center;
+}
+
+.table-p__delete-link {
+  padding: 10px;
+  font-size: 16px;
+  display: inline-block;
+  color: #333333;
+  transition: color 0.5s;
+}
+
+.table-p__delete-link:hover {
+  color: #ff4500;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 767px) {
   .table-p td {
-    padding: 20px; }
+    padding: 1px;
+  }
+
   .table-p__box {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    -ms-flex-align: center;
-        align-items: center; }
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .table-p__img-wrap {
-    display: inline-block;
-    vertical-align: middle;
-    background-color: #f5f5f5;
-    width: 120px;
-    height: 120px; }
-    .table-p__img-wrap img {
-      display: block;
-      min-width: 120px; }
-  .table-p__info {
-    margin-left: 18px; }
-  .table-p__name {
-    display: block; }
-    .table-p__name > a {
-      color: #333333;
-      font-size: 14px;
-      font-weight: 600;
-      transition: color 0.5s; }
-      .table-p__name > a:hover {
-        color: #ffff00; }
-  .table-p__category {
-    display: block; }
-    .table-p__category > a {
-      color: #a0a0a0;
-      transition: color 0.5s;
-      font-size: 12px; }
-      .table-p__category > a:hover {
-        color: #ffff00; }
-  .table-p__variant-list {
-    margin: 0;
-    padding: 0;
-    list-style: none; }
-    .table-p__variant-list > li > span {
-      color: #a0a0a0;
-      font-size: 12px; }
-  .table-p__price {
-    text-align: center;
-    display: block;
-    color: #333333;
-    font-size: 14px;
-    font-weight: 600; }
-  .table-p__input-counter-wrap {
-    text-align: center; }
-  .table-p__del-wrap {
-    text-align: center; }
-  .table-p__delete-link {
-    padding: 10px;
-    font-size: 16px;
-    display: inline-block;
-    color: #333333;
-    transition: color 0.5s; }
-    .table-p__delete-link:hover {
-      color: #ff4500; }
+    margin-right: 0;
+    margin-bottom: 1px;
+  }
+
+  .table-p__name > a,
+  .table-p__category > a {
+    font-size: 12px;
+  }
+}
+
 
 .w-r {
   background-color: #ffffff;
@@ -3191,7 +3257,7 @@ input::-ms-clear {
     display: inline-block;
     transition: color 0.5s; }
     .route-box__link:hover {
-      color: #ffff00; }
+      color: #ff4500; }
   .route-box i {
     margin-right: 2px; }
 
@@ -3215,7 +3281,7 @@ input::-ms-clear {
   .f-cart__table tr:last-child td {
     font-size: 16px;
     font-weight: 700;
-    color: #ffff00; }
+    color: #ff4500; }
 
 .f-cart__ship-link {
   font-size: 13px;
@@ -3322,7 +3388,7 @@ input::-ms-clear {
 13.0 Checkout-Page
 --------------------------------------------------------------*/
 .msg {
-  background-color: #ffffff;
+  background-color: rgb(245, 4, 4);
   box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
   padding: 20px; }
   .msg__text {

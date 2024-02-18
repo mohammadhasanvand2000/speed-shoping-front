@@ -4,6 +4,8 @@ import '../../bace-style/css/bootstrap.css'
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import CurrentPathIndicator from '../main-page/CurrentPathIndicator'
+import { baseUrl } from '../../axiosConfig';
 
 class Register extends Component {
   constructor(props) {
@@ -57,7 +59,7 @@ class Register extends Component {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/auth/register/', {
+        const response = await axios.post(`${baseUrl}/auth/register/`, {
           name: this.state.name,
           email: this.state.email,
           phone: this.state.username,
@@ -104,7 +106,8 @@ class Register extends Component {
 
     return (
       <div className="my-component">
-        
+                  <div dir='rtl'  style={{marginRight:'60px',color:'#000000'}}><h3 style={{marginRight:'60px',color:'#000000'}}><CurrentPathIndicator /></h3> </div>
+
           <div className="container">
             <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
               <div className="container">
@@ -192,7 +195,7 @@ class Register extends Component {
                                 checked={this.state.agreeTerms}
                                 onChange={this.handleInputChange}
                               />
-                              <label style={{ color: '#ffff00', textAlign: 'right' }} className="form-check-label" htmlFor="acceptTerms">با تمامی شرایط موافقم <a href="#">شرایط و قوانین</a></label>
+                              <label style={{ color: '#ffff00', textAlign: 'right' }} className="form-check-label" htmlFor="acceptTerms"> من رباط نیستم    <a target="blank" href="https://sitebaseo.com/%DA%A9%D9%BE%DA%86%D8%A7-%DA%86%DB%8C%D8%B3%D8%AA%D8%9F/"> تایید کنید</a></label>
                               <div style={{ color: '#f80606' }} className="invalid-feedback">{errors.agreeTerms}</div>
                             </div>
                           </div>
@@ -242,7 +245,7 @@ class Register extends Component {
           </Modal.Header >
           <Modal.Body className="text-center" style={{ backgroundColor: '#dee2e680' }}>{"تبریک میگم شما با موفقیت ثبت نام شدید ."}</Modal.Body>
           <Modal.Footer  style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#dee2e680' }}>
-              <Button style={{ backgroundColor: '#0a58ca' }} variant="secondary" onClick={this.handleClose}>
+              <Button style={{ backgroundColor: '#0a58ca' }} variant="secondary" href="/login">
                 وارد حساب کاربری خود شوید 
               </Button>
           </Modal.Footer>
