@@ -8,7 +8,7 @@ import { AuthProvider } from './components/auth/AuthContext';
 ReactDOM.render(
   
   
-   <BrowserRouter>
+   <BrowserRouter basename="/speed-shoping-front/" >
       <App />
       </BrowserRouter>
   ,
