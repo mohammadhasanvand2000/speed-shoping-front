@@ -139,7 +139,7 @@ const Product = () => {
                               
                             </span>
                             <span className="text-center  product-o__name">
-                             <a href={`Detail/${product.id}`}>{product.title}</a>
+                             <a href={`/speed-shoping-front/#/Detail/${product.id}`}>{product.title}</a>
                             </span>
 
                             {/* امتیازات و قیمت */}

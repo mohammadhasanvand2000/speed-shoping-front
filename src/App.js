@@ -26,7 +26,7 @@ function App() {
         <AuthProvider>
           
             <Routes>
-              <Route exact path="/" element={<First />} />
+              <Route exact path="//speed-shoping-front/#/" element={<First />} />
               <Route path="/about" element={<AboutSection />} />
               <Route path="/form/:cartId" element={<BuyForm />} />
               <Route path="/test" element={<TestComponent />} />

@@ -291,7 +291,7 @@ const Cart = () => {
                   <div className="col-lg-12">
                     <div className="route-box">
                       <div className="route-box__g1">
-                      <Link to={`/form/${cid}`}>
+                      <Link to={`/speed-shoping-front/#/form/${cid}`}>
   <button className="route-box__link" style={{ backgroundColor: '#ece802' }}>
     <i className="fas fa-long-arrow-alt-left" />
     <span>نهایی کردن خرید</span>
