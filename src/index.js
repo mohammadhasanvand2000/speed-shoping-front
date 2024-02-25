@@ -9,7 +9,7 @@ ReactDOM.render(
   
    <HashRouter >
       <App />
-   </RouterHashRouter>   
+   </HashRouter>   
   ,
   
   document.getElementById('root')
