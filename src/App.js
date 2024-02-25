@@ -23,7 +23,7 @@ function App() {
     <div>
       <React.StrictMode>
         <AuthProvider>
-          <BrowserRouter>
+          <BrowserRouter basename='/speed-shoping-front'>
             <Routes>
               <Route path="/" element={<First />} />
               <Route path="/about" element={<AboutSection />} />
