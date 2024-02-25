@@ -19,35 +19,30 @@ import AboutSection from './components/main-page/AboutSection';
 import TestComponent from './components/main-page/TestComponent';
 
 function App() {
-  
-    return (
-      <div >
+  return (
+    <div>
       <React.StrictMode>
         <AuthProvider>
-          <BrowserRouter  >
-        
-          <Routes >
-          <Route path="/speed-shoping-front" element={<First />} />
-
-          <Route path="/about" element={<AboutSection />} />
-          <Route path="/form/:cartId" element={<BuyForm />} />
-          <Route path="/test" element={<TestComponent />} />
-          
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pro" element={<Product />} />
-          <Route path="/Detail/:id" element={<Detail />} />
-          <Route path="/Setnewpassword/:uidb64/:token" element={<Setnewpassword />} />
-          <Route path="/forget" element={<Forget />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/speed-shoping-front/register" element={<Register />} />
-          </Routes>
-          </BrowserRouter>     
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<First />} />
+              <Route path="/about" element={<AboutSection />} />
+              <Route path="/form/:cartId" element={<BuyForm />} />
+              <Route path="/test" element={<TestComponent />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pro" element={<Product />} />
+              <Route path="/Detail/:id" element={<Detail />} />
+              <Route path="/Setnewpassword/:uidb64/:token" element={<Setnewpassword />} />
+              <Route path="/forget" element={<Forget />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </BrowserRouter>
         </AuthProvider>
       </React.StrictMode>
-      </div>
-    );
-  }
-
+    </div>
+  );
+}
 
 export default App;
