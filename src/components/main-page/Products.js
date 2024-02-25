@@ -126,7 +126,7 @@ const Product = () => {
                               <div className="product-o__action-wrap">
                                 <ul className="product-o__action-list">
                                   <li>
-                                    <a target="blank"  href={`Detail/${product.id}`} data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="جزییات">
+                                    <a target="blank"  href={`/speed-shoping-front/#/Detail/${product.id}`} data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="جزییات">
                                     <FaEye />
                                     </a>
                                   </li>

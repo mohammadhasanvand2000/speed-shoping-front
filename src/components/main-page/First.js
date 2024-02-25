@@ -71,7 +71,7 @@ const First = () => {
   </Navbar.Toggle>
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ah-list ml-auto">
-      <Nav.Link target="blank" className="ah-list ah-list--design1 ah-list--link-color-secondary" href="/about"><BsFileText /> درباره ما</Nav.Link>
+      <Nav.Link target="blank" className="ah-list ah-list--design1 ah-list--link-color-secondary" href="/speed-shoping-front/#/about"><BsFileText /> درباره ما</Nav.Link>
       <Nav.Link href="#call"><FiPhone /> تماس با ما </Nav.Link>
       <Nav.Link href="#pro"><BsBox /> محصولات</Nav.Link>
       

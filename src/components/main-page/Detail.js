@@ -359,7 +359,7 @@ const handleIncrement = () => {
   }} type="button">خرید</button><br/>
             {showCartButton && (<a href="/cart" >
   <button style={{backgroundColor:'#28a745',marginTop:'20px',borderColor:'#28a745', marginRight:"30px", color: "#fdfcfc", marginRight:"50px" }} className="btn btn--e-brand-b-2 " >
-    <a href="/cart" ><h4><BsCart /></h4>
+    <a href="/speed-shoping-front/#/cart" ><h4><BsCart /></h4>
      سبد
      </a>
   </button></a>
