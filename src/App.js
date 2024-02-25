@@ -24,10 +24,10 @@ class App extends React.Component {
       <div >
       <React.StrictMode>
         <AuthProvider>
-          <BrowserRouter basename='/speed-shoping-front/' >
+          <BrowserRouter  >
         
           <Routes >
-          <Route path="/speed-shoping-front" element={<First />} />
+          <Route path="/speed-shoping-front/" element={<First />} />
 
           <Route path="/about" element={<AboutSection />} />
           <Route path="/form/:cartId" element={<BuyForm />} />
