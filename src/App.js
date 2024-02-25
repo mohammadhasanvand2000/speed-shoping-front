@@ -21,7 +21,7 @@ import TestComponent from './components/main-page/TestComponent';
 function App() {
   return (
     <div>
-      <HashRouter  basename='/' >
+      <HashRouter  basename='/speed-shoping-front/#/' >
       <React.StrictMode>
         <AuthProvider>
           
