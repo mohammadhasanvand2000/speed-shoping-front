@@ -7,9 +7,7 @@ import { AuthProvider } from './components/auth/AuthContext';
 
 ReactDOM.render(
   
-   <HashRouter >
       <App />
-   </HashRouter>   
   ,
   
   document.getElementById('root')

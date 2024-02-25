@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import { BrowserRouter ,Routes, Route } from 'react-router-dom';
+import { HashRouter ,Routes, Route } from 'react-router-dom';
 import { AuthProvider ,getAuthToken} from './components/auth/AuthContext';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -21,6 +21,7 @@ import TestComponent from './components/main-page/TestComponent';
 function App() {
   return (
     <div>
+      <HashRouter  basename='/' >
       <React.StrictMode>
         <AuthProvider>
           
@@ -41,6 +42,7 @@ function App() {
           
         </AuthProvider>
       </React.StrictMode>
+    </HashRouter>
     </div>
   );
 }
