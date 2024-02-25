@@ -23,10 +23,10 @@ function App() {
     <div>
       <React.StrictMode>
         <AuthProvider>
-          <BrowserRouter basename='/speed-shoping-front'>
-            <Routes>
-              <Route path="/speed-shoping-front" element={<First />} />
-              <Route path="about" element={<AboutSection />} />
+          
+         
+              <Route exact path="/" element={<First />} />
+              <Route path="/about" element={<AboutSection />} />
               <Route path="/form/:cartId" element={<BuyForm />} />
               <Route path="/test" element={<TestComponent />} />
               <Route path="/cart" element={<Cart />} />
@@ -37,8 +37,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
-            </Routes>
-          </BrowserRouter>
+            
+          
         </AuthProvider>
       </React.StrictMode>
     </div>
