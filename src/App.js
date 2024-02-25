@@ -32,7 +32,7 @@ class App extends React.Component {
           <Route path="/about" element={<AboutSection />} />
           <Route path="/form/:cartId" element={<BuyForm />} />
           <Route path="/test" element={<TestComponent />} />
-          <Route path="/login" element={<Login />} />
+          
           <Route path="/cart" element={<Cart />} />
             <Route path="/pro" element={<Product />} />
             <Route path="/Detail/:id" element={<Detail />} />
