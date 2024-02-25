@@ -47,7 +47,7 @@ const First = () => {
       setShowModal(true);
     } else {
       // Redirect to cart page
-      window.location.href = '/cart';
+      window.location.href = '/speed-shoping-front/#/cart';
     }
   }; 
 
@@ -91,7 +91,7 @@ const First = () => {
         {authToken && <Logout />}
           {!authToken && (
             <>
-              <NavDropdown.Item   style={{ color:"#000000", textAlign:"right"}} href="/register"><FaUserPlus /><span> ثبت نام</span></NavDropdown.Item>
+              <NavDropdown.Item   style={{ color:"#000000", textAlign:"right"}} href="/speed-shoping-front/#/register"><FaUserPlus /><span> ثبت نام</span></NavDropdown.Item>
               <NavDropdown.Item  target="blank"  style={{  color:"#000000",textAlign:"right"}} href="/speed-shoping-front/#/login"><FaLock /><span> ورود</span></NavDropdown.Item>
             </>
           )}
