@@ -92,7 +92,7 @@ const First = () => {
           {!authToken && (
             <>
               <NavDropdown.Item   style={{ color:"#000000", textAlign:"right"}} href="/register"><FaUserPlus /><span> ثبت نام</span></NavDropdown.Item>
-              <NavDropdown.Item  target="blank"  style={{  color:"#000000",textAlign:"right"}} href="speed-shoping-front/#/"><FaLock /><span> ورود</span></NavDropdown.Item>
+              <NavDropdown.Item  target="blank"  style={{  color:"#000000",textAlign:"right"}} href="/speed-shoping-front/#/login"><FaLock /><span> ورود</span></NavDropdown.Item>
             </>
           )}
                 </NavDropdown>
