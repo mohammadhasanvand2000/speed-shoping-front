@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import { HashRouter ,Routes, Route } from 'react-router-dom';
+import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import { AuthProvider ,getAuthToken} from './components/auth/AuthContext';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -21,12 +21,12 @@ import TestComponent from './components/main-page/TestComponent';
 function App() {
   return (
     <div>
-      <HashRouter >
+      
       <React.StrictMode>
         <AuthProvider>
           
             <Routes>
-              <Route index path="/speed-shoping-front/#/" element={<First />} />
+              <Route exact path="/" element={<First />} />
               <Route path="/about" element={<AboutSection />} />
               <Route path="/form/:cartId" element={<BuyForm />} />
               <Route path="/test" element={<TestComponent />} />
@@ -42,7 +42,6 @@ function App() {
           
         </AuthProvider>
       </React.StrictMode>
-    </HashRouter>
     </div>
   );
 }
