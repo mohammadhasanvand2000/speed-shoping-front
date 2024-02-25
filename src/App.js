@@ -25,7 +25,7 @@ function App() {
         <AuthProvider>
           <BrowserRouter basename='/speed-shoping-front'>
             <Routes>
-              <Route path="/" element={<First />} />
+              <Route path="/speed-shoping-front" element={<First />} />
               <Route path="/about" element={<AboutSection />} />
               <Route path="/form/:cartId" element={<BuyForm />} />
               <Route path="/test" element={<TestComponent />} />
