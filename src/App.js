@@ -38,7 +38,7 @@ class App extends React.Component {
             <Route path="/Detail/:id" element={<Detail />} />
             <Route path="/Setnewpassword/:uidb64/:token" element={<Setnewpassword />} />
             <Route path="/forget" element={<Forget />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/speed-shoping-front/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
           </Routes>
