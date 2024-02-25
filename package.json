@@ -1,7 +1,8 @@
 {
-  "homepage": "http://mohammadhasanvand2000.github.io/speed-shoping-front/",
+ 
   "name": "first-react",
   "version": "0.1.0",
+  "homepage": "http://mohammadhasanvand2000.github.io/speed-shoping-front",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
