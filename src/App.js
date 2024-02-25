@@ -21,12 +21,12 @@ import TestComponent from './components/main-page/TestComponent';
 function App() {
   return (
     <div>
-      <HashRouter  basename='/speed-shoping-front/#/' >
+      <HashRouter >
       <React.StrictMode>
         <AuthProvider>
           
             <Routes>
-              <Route exact path="/" element={<First />} />
+              <Route index path="/speed-shoping-front/#/" element={<First />} />
               <Route path="/about" element={<AboutSection />} />
               <Route path="/form/:cartId" element={<BuyForm />} />
               <Route path="/test" element={<TestComponent />} />
