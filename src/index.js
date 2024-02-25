@@ -7,7 +7,7 @@ import { AuthProvider } from './components/auth/AuthContext';
 
 ReactDOM.render(
   
-   <Router>
+   <Router >
       <App />
    </Router>   
   ,

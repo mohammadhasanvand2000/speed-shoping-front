@@ -24,8 +24,8 @@ function App() {
       <React.StrictMode>
         <AuthProvider>
           
-         
-              <Route exact path="/speed-shoping-front" element={<First />} />
+            <Routes>
+              <Route exact path="/" element={<First />} />
               <Route path="/about" element={<AboutSection />} />
               <Route path="/form/:cartId" element={<BuyForm />} />
               <Route path="/test" element={<TestComponent />} />
@@ -34,10 +34,10 @@ function App() {
               <Route path="/Detail/:id" element={<Detail />} />
               <Route path="/Setnewpassword/:uidb64/:token" element={<Setnewpassword />} />
               <Route path="/forget" element={<Forget />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/speed-shoping-front/#/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
-            
+            </Routes>
           
         </AuthProvider>
       </React.StrictMode>
